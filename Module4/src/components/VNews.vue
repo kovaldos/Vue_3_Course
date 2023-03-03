@@ -4,14 +4,26 @@
     <v-button @action="openNews">
       {{ !isNewsOpen ? "Open" : "Close" }}
     </v-button>
-<!--    <button class="btn" @click="openNews">-->
-<!--      {{ !isNewsOpen ? "Open" : "Close" }}-->
-<!--    </button>-->
-    <button class="btn danger" v-if="wasRead" @click="markAsUnread">Mark as unread</button>
+    <!--    <button class="btn" @click="openNews">-->
+    <!--      {{ !isNewsOpen ? "Open" : "Close" }}-->
+    <!--    </button>-->
+    <v-button
+        color="danger"
+        v-if="wasRead"
+        @action="markAsUnread"
+    >Mark as unread
+    </v-button>
+    <hr>
     <div class="content" v-if="isNewsOpen">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consequuntur excepturi quis repellendus. A
         asperiores dolorum harum natus sunt veniam? </p>
-      <button class="btn primary" @click="markAsRead" v-if="!wasRead">Mark as read</button>
+      <v-button
+          color="primary"
+          @action="markAsRead"
+          v-if="!wasRead"
+      >Mark as read
+      </v-button>
+      <v-news-list></v-news-list>
     </div>
   </div>
 </template>
@@ -19,8 +31,11 @@
 <script>
 // import VButton from "@/components/UI/VButton.vue";
 
+import VNewsList from "@/components/VNewsList.vue";
+
 export default {
   name: "v-news",
+  components: {VNewsList},
   // components: {VButton},
   // props: ["title"],
   props: {
@@ -85,7 +100,7 @@ export default {
     markAsUnread() {
       this.$emit("mark-unread", this.id)
     }
-  }
+  },
 }
 </script>
 
