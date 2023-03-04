@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "v-button",
+  name: "app-button",
   emits: ["action"],
   props: {
     color: {
@@ -15,6 +15,11 @@ export default {
       validator(value) {
         return ["", "primary", "danger"].includes(value);
       }
+    }
+  },
+  methods: {
+    btnLog() {
+      console.log("Button log")
     }
   }
 }

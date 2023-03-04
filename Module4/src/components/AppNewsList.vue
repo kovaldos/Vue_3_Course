@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "v-news-list",
+  name: "app-news-list",
   inject: ["news"],
 }
 </script>

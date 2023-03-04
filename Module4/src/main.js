@@ -1,16 +1,21 @@
-import { createApp } from 'vue'
+import {createApp, defineAsyncComponent} from 'vue'
 import App from './App.vue'
 import router from './router'
 import uiComponents from '@/components/UI'
 import './assets/main.css'
-import VHeader from "@/components/VHeader.vue";
+import AppHeader from "@/components/AppHeader.vue";
 
 const app = createApp(App)
 
-app.component('v-header', VHeader);
+app.component('app-header', AppHeader);
+app.component('app-async-component', defineAsyncComponent(() => {
+    return import('@/components/AppAsyncComponent.vue')
+}))
 uiComponents.forEach((uiComponent) => {
     app.component(uiComponent.name, uiComponent)
 })
+
+
 
 app.use(router)
 

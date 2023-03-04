@@ -1,42 +1,40 @@
 <template>
   <div class="card">
     <h2>{{ title }}</h2>
-    <v-button @action="openNews">
+    <app-button @action="openNews">
       {{ !isNewsOpen ? "Open" : "Close" }}
-    </v-button>
+    </app-button>
     <!--    <button class="btn" @click="openNews">-->
     <!--      {{ !isNewsOpen ? "Open" : "Close" }}-->
     <!--    </button>-->
-    <v-button
+    <app-button
         color="danger"
         v-if="wasRead"
         @action="markAsUnread"
     >Mark as unread
-    </v-button>
+    </app-button>
     <hr>
     <div class="content" v-if="isNewsOpen">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consequuntur excepturi quis repellendus. A
         asperiores dolorum harum natus sunt veniam? </p>
-      <v-button
+      <app-button
           color="primary"
           @action="markAsRead"
           v-if="!wasRead"
       >Mark as read
-      </v-button>
-      <v-news-list></v-news-list>
+      </app-button>
+      <app-news-list></app-news-list>
     </div>
   </div>
 </template>
 
 <script>
-// import VButton from "@/components/UI/VButton.vue";
 
-import VNewsList from "@/components/VNewsList.vue";
+import AppNewsList from "@/components/AppNewsList.vue";
 
 export default {
-  name: "v-news",
-  components: {VNewsList},
-  // components: {VButton},
+  name: "app-news",
+  components: {AppNewsList},
   // props: ["title"],
   props: {
     title: {

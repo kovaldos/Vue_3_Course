@@ -1,5 +1,5 @@
-import VButton from "@/components/UI/VButton.vue";
+import AppButton from "@/components/UI/AppButton.vue";
 
 export default [
-    VButton,
+    AppButton,
 ]

@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "v-block"
+  name: "app-block"
 }
 </script>
 
