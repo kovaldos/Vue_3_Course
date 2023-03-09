@@ -6,18 +6,22 @@
           @submitForm="addPerson">
       </add-person-form>
     </div>
+    <persons-list :persons="persons" @loadData="loadData"></persons-list>
   </div>
 </template>
 
 <script>
 
 import AddPersonForm from "@/components/AddPersonForm.vue";
+import PersonsList from "@/components/PersonsList.vue";
 
 const URL = "https://vue-app-http-ab1dd-default-rtdb.firebaseio.com/persons.json";
 export default {
-  components: {AddPersonForm},
+  components: {PersonsList, AddPersonForm},
   data() {
-    return {}
+    return {
+      persons: []
+    }
   },
   methods: {
     async addPerson(data) {
@@ -31,6 +35,9 @@ export default {
         })
       });
       const fbData = await response.json();
+    },
+    loadData() {
+      console.log('loaded')
     }
   }
 }
