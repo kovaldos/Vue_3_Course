@@ -82,8 +82,14 @@ export default {
       }
     },
     async removePerson(id) {
+      const person = this.persons.find(pers => pers.id === id)
       await axios.delete(`${URL}persons/${id}.json`);
       this.persons = this.persons.filter((person) => person.id !== id)
+      this.alert = {
+        type: "primary",
+        title: "Сообщение",
+        text: `Пользователь с именем "${person.firstName}" был удалён`
+      }
     }
   },
   mounted() {
