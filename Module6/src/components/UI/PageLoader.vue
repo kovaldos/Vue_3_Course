@@ -1,5 +1,5 @@
 <template>
-  <div class="posts__loader loader">
+  <div class="posts__loader">
     <div class="ring">
       Loading
       <span></span>
