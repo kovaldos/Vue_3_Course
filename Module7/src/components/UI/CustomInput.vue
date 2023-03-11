@@ -4,6 +4,20 @@
       <span class="custom-input__label" v-if="label">{{ label }}</span>
 
       <input
+          v-if="vFocus"
+          v-focus
+          :type="type"
+          :id="id"
+          :name="name"
+          :placeholder="placeholder"
+          :max="max"
+          :min="min"
+          :value="modelValue"
+          @input="updateInput"
+          :error="error"
+      />
+      <input
+          v-else
           :type="type"
           :id="id"
           :name="name"
@@ -61,6 +75,11 @@ export default {
     error: {
       type: String,
       required: false,
+    },
+    vFocus: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data() {

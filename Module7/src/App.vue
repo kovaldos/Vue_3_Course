@@ -16,6 +16,12 @@
       <custom-btn class="primary" @click="toggleAlert">{{ alert ? "Скрыть" : "Показать" }} сообщение</custom-btn>
     </div>
     <app-block></app-block>
+    <div class="card">
+      <custom-input
+        label="Здесь кастомная директива v-focus"
+        vFocus
+      ></custom-input>
+    </div>
   </div>
 </template>
 
@@ -23,10 +29,16 @@
 import AppAlert from "@/components/AppAlert.vue";
 import AppBlock from "@/components/AppBlock.vue";
 import toggleAlert from "@/mixins/toggleAlert";
+// import CustomInput from "@/components/UI/CustomInput.vue";
 
 export default {
   components: {AppBlock, AppAlert},
   mixins: [toggleAlert],
+  data() {
+    return {
+
+    }
+  }
 }
 </script>
 
