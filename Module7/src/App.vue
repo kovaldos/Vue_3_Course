@@ -1,7 +1,10 @@
 <template>
   <div class="container">
-    <div class="card">
-      <h1 class="title">Миксины, кастомные директивы и плагины</h1>
+    <div class="card" v-if="show">
+      <h1 class="title" v-color:[type].blink.hover="currentColor ? customColor : customColor2">Миксины, кастомные директивы и
+        плагины</h1>
+      <custom-btn @click="toggleColor">Сделать {{ currentColor ? customColor2 : customColor }}</custom-btn>
+      <custom-btn @click="type = type === 'color' ? 'backgroundColor' : 'color'">Изменить тип</custom-btn>
     </div>
     <app-alert
         v-if="alert"
@@ -18,8 +21,8 @@
     <app-block></app-block>
     <div class="card">
       <custom-input
-        label="Здесь кастомная директива v-focus"
-        vFocus
+          label="Здесь кастомная директива v-focus"
+          :vFocus="true"
       ></custom-input>
     </div>
   </div>
@@ -29,16 +32,33 @@
 import AppAlert from "@/components/AppAlert.vue";
 import AppBlock from "@/components/AppBlock.vue";
 import toggleAlert from "@/mixins/toggleAlert";
-// import CustomInput from "@/components/UI/CustomInput.vue";
+import CustomBtn from "@/components/UI/CustomBtn.vue";
+import CustomInput from "@/components/UI/CustomInput.vue";
 
 export default {
-  components: {AppBlock, AppAlert},
+  components: {CustomInput, CustomBtn, AppBlock, AppAlert},
   mixins: [toggleAlert],
   data() {
     return {
-
+      customColor: "darkred",
+      customColor2: "darkblue",
+      currentColor: true,
+      type: "color",
+      show: true,
+      userName: ""
     }
-  }
+  },
+  methods: {
+    toggleColor() {
+      this.currentColor = !this.currentColor
+    },
+
+  },
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.show = false;
+  //   }, 1500);
+  // }
 }
 </script>
 

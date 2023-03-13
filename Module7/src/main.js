@@ -12,8 +12,8 @@ uiComponents.forEach((component) => {
     app7.component(component.name, component)
 })
 
-directives.forEach((dir) => {
-    app7.directive(dir.name, dir)
+directives.forEach((directive) => {
+    app7.directive(directive.name, directive)
 })
 
 app7.mount('#app')
