@@ -1,7 +1,11 @@
 <template>
   <div class="container">
-    <div class="card">
-      <h1 class="title">Миксины, кастомные директивы и плагины</h1>
+    <div class="card" v-if="show">
+      <h1 class="title" v-color:[type].blink.hover="currentColor ? customColor : customColor2">Миксины, кастомные
+        директивы и
+        плагины</h1>
+      <custom-btn @click="toggleColor">Сделать {{ currentColor ? customColor2 : customColor }}</custom-btn>
+      <custom-btn @click="type = type === 'color' ? 'backgroundColor' : 'color'">Изменить тип</custom-btn>
     </div>
     <app-alert
         v-if="alert"
@@ -16,6 +20,16 @@
       <custom-btn class="primary" @click="toggleAlert">{{ alert ? "Скрыть" : "Показать" }} сообщение</custom-btn>
     </div>
     <app-block></app-block>
+    <div class="card">
+      <custom-input
+          label="Здесь кастомная директива v-focus"
+          :vFocus="true"
+      ></custom-input>
+    </div>
+    <div class="card">
+      <h3>{{ $i18n('app.title') }}</h3>
+      <custom-btn @click="changeLang">Переключить на английский язык</custom-btn>
+    </div>
   </div>
 </template>
 
@@ -23,10 +37,37 @@
 import AppAlert from "@/components/AppAlert.vue";
 import AppBlock from "@/components/AppBlock.vue";
 import toggleAlert from "@/mixins/toggleAlert";
+import CustomBtn from "@/components/UI/CustomBtn.vue";
+import CustomInput from "@/components/UI/CustomInput.vue";
 
 export default {
-  components: {AppBlock, AppAlert},
+  components: {CustomInput, CustomBtn, AppBlock, AppAlert},
   mixins: [toggleAlert],
+  inject: ["translate"],
+  data() {
+    return {
+      customColor: "darkred",
+      customColor2: "darkblue",
+      currentColor: true,
+      type: "color",
+      show: true,
+      userName: ""
+    }
+  },
+  methods: {
+    toggleColor() {
+      this.currentColor = !this.currentColor
+    },
+    changeLang() {
+      this.translate("EN");
+      this.$forceUpdate();
+    }
+  },
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.show = false;
+  //   }, 1500);
+  // }
 }
 </script>
 

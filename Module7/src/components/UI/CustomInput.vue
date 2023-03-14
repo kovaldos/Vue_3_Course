@@ -1,9 +1,23 @@
 <template>
-  <div class="custom-input" :class="{'is-invalid': error}">
+  <div class="custom-input" :class="{'is-invalid': error}" :data-validate-type="dataValidateType">
     <label>
       <span class="custom-input__label" v-if="label">{{ label }}</span>
 
       <input
+          v-if="vFocus"
+          v-focus
+          :type="type"
+          :id="id"
+          :name="name"
+          :placeholder="placeholder"
+          :max="max"
+          :min="min"
+          :value="modelValue"
+          @input="updateInput"
+          :error="error"
+      />
+      <input
+          v-else
           :type="type"
           :id="id"
           :name="name"
@@ -53,14 +67,19 @@ export default {
       type: String,
       required: false,
     },
-    // dataValidateType: {
-    //   type: String,
-    //   required: false,
-    // },
+    dataValidateType: {
+      type: String,
+      required: false,
+    },
     modelValue: [String, Number],
     error: {
       type: String,
       required: false,
+    },
+    vFocus: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data() {
