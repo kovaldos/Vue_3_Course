@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-input" :class="{'is-invalid': error}">
+  <div class="custom-input" :class="{'is-invalid': error}" :data-validate-type="dataValidateType">
     <label>
       <span class="custom-input__label" v-if="label">{{ label }}</span>
 
@@ -67,10 +67,10 @@ export default {
       type: String,
       required: false,
     },
-    // dataValidateType: {
-    //   type: String,
-    //   required: false,
-    // },
+    dataValidateType: {
+      type: String,
+      required: false,
+    },
     modelValue: [String, Number],
     error: {
       type: String,
